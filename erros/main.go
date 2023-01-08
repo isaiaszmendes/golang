@@ -19,6 +19,10 @@ func main() {
 		log.Fatal(erro.Error())
 	} 
 	fmt.Println(resp)
+
+	// Quando não quero tratar erros, posso colocar o "_"
+	// resposta, _ := soma(10,2)
+	// fmt.Println(resposta)
 }
 
 func soma(x int, y int)(int, error) {
