@@ -31,6 +31,5 @@ func soma(x int, y int)(int, error) {
 		return 0, errors.New("Total maior que 10");
 	}
 
-
 	return res, nil
 }
