@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"funcoes"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	resultado :=  funcoes.Soma(2,3)
+	fmt.Println("Hello, World!",resultado)
 }
