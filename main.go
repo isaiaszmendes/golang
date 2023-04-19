@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	resultado :=  funcoes.Soma(2,3)
-	fmt.Println("Hello, World!",resultado)
+	resultado := funcoes.Soma(2, 3)
+	fmt.Println("Hello, World!", resultado)
 }
