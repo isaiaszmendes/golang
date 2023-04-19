@@ -1,12 +1,14 @@
 package main
 
 import "fmt"
-// variavel Package Level Scope
+
+// variavel package-level scope
 // possui scopo que abrange o package inteiro
 var numeroComPackageLevelScope = 200
 
 // se não atribuirmos um valor na declaração com o var
 var m int
+
 //! Isso da erro, só podemos atribuir dentro de um code block
 //* m = 10
 
@@ -32,9 +34,22 @@ func main() {
 
 	z := 50
 	qualquerNumero(z)
+
+	printsFMT()
 }
 
 func qualquerNumero(x int) {
 	fmt.Println(numeroComPackageLevelScope)
 	fmt.Println(x)
+}
+func printsFMT() {
+	x := 10
+	fmt.Println(x)
+
+	s := "bom"
+	r := "dia"
+	z := fmt.Sprint(s, r, 10, " ", "!") // Não imprime, apenas formata os valores e retorna uma string sem espaços
+	fmt.Println(z)
+	//* retorno: bomdia10 !
+
 }
