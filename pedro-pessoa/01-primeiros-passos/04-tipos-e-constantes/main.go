@@ -36,8 +36,23 @@ func main() {
 	var y int = 100
 	yString := strconv.FormatInt(int64(y), 10)
 	fmt.Printf("%v, %T\n", yString, yString)
+
+	const z = 30 // Chamamos isso de untyped constant
+	fmt.Printf("%v, %T\n", z, z)
+	takeInt32(z)
+	takeInt64(z)
+	const f = 3.14
+	takeInt32(f) // Não compila porque f é float64 e takeInt32 espera um int32
 }
 
 func imprimeByte(b byte) {
 	fmt.Println(b)
+}
+
+func takeInt32(x int32) {
+	fmt.Println(x)
+}
+
+func takeInt64(x int64) {
+	fmt.Println(x)
 }
