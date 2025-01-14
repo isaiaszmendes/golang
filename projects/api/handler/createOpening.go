@@ -1,6 +1,11 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/isaiaszmendes/gopportunities/schemas"
+)
 
 func CreateOpeningHandler(ctx *gin.Context) {
 	request := CreateOpeningRequest{}
@@ -9,15 +14,28 @@ func CreateOpeningHandler(ctx *gin.Context) {
 	logger.Infof("request received %+v", request)
 
 	if err := request.Validate(); err != nil {
-		logger.Errorf("error validating request %v", err.Error())
+		logger.Errorf("validation error: %v", err.Error())
+		sendError(ctx, http.StatusBadRequest, err.Error())
 		return
 	}
 
-	if err := db.Create(&request).Error; err != nil {
+	// unwrap
+	opening := schemas.Opening{
+		Role:     request.Role,
+		Company:  request.Company,
+		Location: request.Location,
+		Remote:   *request.Remote,
+		Link:     request.Link,
+		Salary:   request.Salary,
+	}
+
+	if err := db.Create(&opening).Error; err != nil {
 		logger.Errorf("error creating opening %v", err.Error())
-		ctx.JSON(500, gin.H{"error": "error creating opening"})
+		sendError(ctx, http.StatusInternalServerError, "error creating opening on database")
 		return
 	}
+
+	sendSuccess(ctx, "create-opening", opening)
 }
 
 // TODO: Validar pq deu 200 ao remover campos do post no insomnia
