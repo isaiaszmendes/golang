@@ -35,7 +35,7 @@ func CreateOpeningHandler(ctx *gin.Context) {
 		return
 	}
 
-	sendSuccess(ctx, "create-opening", opening)
+	sendSuccess(ctx, "create-opening", opening, http.StatusCreated)
 }
 
 // TODO: Validar pq deu 200 ao remover campos do post no insomnia
